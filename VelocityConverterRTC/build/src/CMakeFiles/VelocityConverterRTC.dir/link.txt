@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC    -shared -Wl,-soname,VelocityConverterRTC.so -o VelocityConverterRTC.so CMakeFiles/VelocityConverterRTC.dir/VelocityConverterRTC.cpp.o -lpthread -lomniORB4 -lomnithread -lomniDynamic4 -lRTC -lcoil 

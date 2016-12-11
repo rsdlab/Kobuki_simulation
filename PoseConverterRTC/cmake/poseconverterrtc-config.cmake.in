@@ -1,0 +1,54 @@
+# PoseConverterRTC CMake config file
+#
+# This file sets the following variables:
+# PoseConverterRTC_FOUND - Always TRUE.
+# PoseConverterRTC_INCLUDE_DIRS - Directories containing the PoseConverterRTC include files.
+# PoseConverterRTC_IDL_DIRS - Directories containing the PoseConverterRTC IDL files.
+# PoseConverterRTC_LIBRARIES - Libraries needed to use PoseConverterRTC.
+# PoseConverterRTC_DEFINITIONS - Compiler flags for PoseConverterRTC.
+# PoseConverterRTC_VERSION - The version of PoseConverterRTC found.
+# PoseConverterRTC_VERSION_MAJOR - The major version of PoseConverterRTC found.
+# PoseConverterRTC_VERSION_MINOR - The minor version of PoseConverterRTC found.
+# PoseConverterRTC_VERSION_REVISION - The revision version of PoseConverterRTC found.
+# PoseConverterRTC_VERSION_CANDIDATE - The candidate version of PoseConverterRTC found.
+
+message(STATUS "Found PoseConverterRTC-@PROJECT_VERSION@")
+set(PoseConverterRTC_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(PoseConverterRTC_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(PoseConverterRTC_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(PoseConverterRTC_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(PoseConverterRTC_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(PoseConverterRTC_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(PoseConverterRTC_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(PoseConverterRTC_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(PoseConverterRTC_VERSION @PROJECT_VERSION@)
+set(PoseConverterRTC_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(PoseConverterRTC_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(PoseConverterRTC_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(PoseConverterRTC_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
