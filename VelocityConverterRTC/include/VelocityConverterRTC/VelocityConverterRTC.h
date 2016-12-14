@@ -230,12 +230,6 @@ class VelocityConverterRTC
   // <rtc-template block="config_declare">
   /*!
    * 
-   * - Name:  Wheel_radius
-   * - DefaultValue: 0.0352
-   */
-  double m_Wheel_radius;
-  /*!
-   * 
    * - Name:  tread
    * - DefaultValue: 0.23
    */

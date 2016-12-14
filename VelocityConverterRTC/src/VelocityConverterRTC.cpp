@@ -25,15 +25,12 @@ static const char* velocityconverterrtc_spec[] =
     "language",          "C++",
     "lang_type",         "compile",
     // Configuration variables
-    "conf.default.Wheel_radius", "0.0352",
     "conf.default.tread", "0.23",
 
     // Widget
-    "conf.__widget__.Wheel_radius", "text",
     "conf.__widget__.tread", "text",
     // Constraints
 
-    "conf.__type__.Wheel_radius", "double",
     "conf.__type__.tread", "double",
 
     ""
@@ -83,7 +80,6 @@ RTC::ReturnCode_t VelocityConverterRTC::onInitialize()
 
   // <rtc-template block="bind_config">
   // Bind variables and configuration variable
-  bindParameter("Wheel_radius", m_Wheel_radius, "0.0352");
   bindParameter("tread", m_tread, "0.23");
   // </rtc-template>
   
@@ -117,7 +113,7 @@ RTC::ReturnCode_t VelocityConverterRTC::onActivated(RTC::UniqueId ec_id)
   m_velocity.data.length(2);
   m_velocity.data[0] = 0.0;
   m_velocity.data[1] = 0.0;
-  
+
   return RTC::RTC_OK;
 }
 
@@ -132,54 +128,56 @@ RTC::ReturnCode_t VelocityConverterRTC::onExecute(RTC::UniqueId ec_id)
 {
   if(m_inIn.isNew()) {
     m_inIn.read();
-    m_velocity.data[0] = m_in.data.vx - m_in.data.va * m_tread / 2;
-    m_velocity.data[1] = m_in.data.vx + m_in.data.va * m_tread / 2;
+    
+    
+    m_velocity.data[0] = m_in.data.vx - m_in.data.va * m_tread / 2;   //left_wheel Speed Control 
+    m_velocity.data[1] = m_in.data.vx + m_in.data.va * m_tread / 2;   //right_wheel Speed Control
     m_velocityOut.write();
   }
-    
-    return RTC::RTC_OK;
-  }
-  
+
+  return RTC::RTC_OK;
+}
+
 /*
-  RTC::ReturnCode_t VelocityConverterRTC::onAborting(RTC::UniqueId ec_id)
-  {
+RTC::ReturnCode_t VelocityConverterRTC::onAborting(RTC::UniqueId ec_id)
+{
   return RTC::RTC_OK;
 }
 */
-  
+
 /*
-  RTC::ReturnCode_t VelocityConverterRTC::onError(RTC::UniqueId ec_id)
-  {
+RTC::ReturnCode_t VelocityConverterRTC::onError(RTC::UniqueId ec_id)
+{
   return RTC::RTC_OK;
 }
 */
-  
+
 /*
 RTC::ReturnCode_t VelocityConverterRTC::onReset(RTC::UniqueId ec_id)
 {
-return RTC::RTC_OK;
-}
-*/
-
-/*
-  RTC::ReturnCode_t VelocityConverterRTC::onStateUpdate(RTC::UniqueId ec_id)
-  {
   return RTC::RTC_OK;
 }
 */
-  
+
 /*
-  RTC::ReturnCode_t VelocityConverterRTC::onRateChanged(RTC::UniqueId ec_id)
+RTC::ReturnCode_t VelocityConverterRTC::onStateUpdate(RTC::UniqueId ec_id)
 {
-return RTC::RTC_OK;
+  return RTC::RTC_OK;
 }
 */
 
-  
-  
-  extern "C"
+/*
+RTC::ReturnCode_t VelocityConverterRTC::onRateChanged(RTC::UniqueId ec_id)
 {
-  
+  return RTC::RTC_OK;
+}
+*/
+
+
+
+extern "C"
+{
+ 
   void VelocityConverterRTCInit(RTC::Manager* manager)
   {
     coil::Properties profile(velocityconverterrtc_spec);
@@ -188,7 +186,6 @@ return RTC::RTC_OK;
                              RTC::Delete<VelocityConverterRTC>);
   }
   
-  };
-  
+};
 
-  
+

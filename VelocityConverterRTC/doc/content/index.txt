@@ -106,7 +106,6 @@ The available configuration parameters are described below:
 ================ ================== ================ ======
 Parameter        Data type          Default Value    Effect
 ================ ================== ================ ======
-Wheel_radius     double             0.0352           
 tread            double             0.23             
 ================ ================== ================ ======
 

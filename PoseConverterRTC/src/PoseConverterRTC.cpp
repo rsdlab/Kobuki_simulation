@@ -99,9 +99,9 @@ RTC::ReturnCode_t PoseConverterRTC::onShutdown(RTC::UniqueId ec_id)
 
 RTC::ReturnCode_t PoseConverterRTC::onActivated(RTC::UniqueId ec_id)
 {
-  m_pose.data.position.x;
-  m_pose.data.position.x;
-  m_pose.data.orientation.y;
+  m_pose.data.position.x = 0;
+  m_pose.data.position.x = 0;
+  m_pose.data.orientation.y = 0;
 
   return RTC::RTC_OK;
 }
@@ -118,15 +118,15 @@ RTC::ReturnCode_t PoseConverterRTC::onExecute(RTC::UniqueId ec_id)
   if(m_poseIn.isNew())
     {
       m_poseIn.read();
+      
+      m_odometry.data.position.x = m_pose.data.position.x;
+      m_odometry.data.position.y = m_pose.data.position.y;
+      m_odometry.data.heading = m_pose.data.orientation.y;
+      
+      m_odometryOut.write();
+      
+      /* std::cout << m_odometry.data.position.x << ',' << m_odometry.data.position.y << ',' << m_odometry.data.heading << std::endl;*/
     }
-
-  m_odometry.data.position.x = m_pose.data.position.x;
-  m_odometry.data.position.y = m_pose.data.position.y;
-  m_odometry.data.heading = m_pose.data.orientation.y;
-
-  m_odometryOut.write();
-
-  /* std::cout << m_odometry.data.position.x << ',' << m_odometry.data.position.y << ',' << m_odometry.data.heading << std::endl;*/
   
   return RTC::RTC_OK;
 }
