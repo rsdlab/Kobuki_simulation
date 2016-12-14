@@ -17,7 +17,7 @@ Documents内に操作マニュアルを参考にしてご利用ください．
 
 ・RangeDataViewerRTC
  ChoreonoidでのRangeDataを出力するためのコンポーネント
-※こちらのコンポーネントはhrpsys用のソースコードをRTC化したものであり，以下のページを参考にしています．
+※こちらのコンポーネントは産総研の金広様がgithub上で公開しているhrpsys-baseに同封されているRangeDataViewerのソースコードを単独RTC化したものであり，以下のページを参考にしています．
 URL:http://docs.ros.org/indigo/api/hrpsys/html/classRangeDataViewer.html
 こちらのコンポーネントはOpenCVの関数を用いているため，コンパイルする際にはOpenCVをインストールしてください．また,こちらのコンポーネントはRangeデータを確認するためのものでありますのでシミュレーションを行うに当たって必ず必要となってくるものではありません
 
